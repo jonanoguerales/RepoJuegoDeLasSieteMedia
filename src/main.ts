@@ -2,155 +2,192 @@ import "./style.css";
 
 let puntuacion = 0;
 
-const mostrarPuntuacion = document.getElementById("contador") as HTMLElement | null;
-const cartaImg = document.querySelector(".imagen") as HTMLImageElement | null;
-const errorM = document.querySelector(".error") as HTMLImageElement | null;
-const botonAñadir = document.querySelector(".añadir") as HTMLButtonElement | null;
-const botonPlantarse = document.querySelector(".plantarse") as HTMLButtonElement | null;
-const botonNueva = document.querySelector(".nueva") as HTMLButtonElement | null;
-const botonSaber = document.querySelector(".saber") as HTMLButtonElement | null;
-
-const mostrarCarta = (carta : number) : void => {
-    switch (carta) {
-        case 1:
-            if(cartaImg && mostrarPuntuacion){
-                cartaImg.src = "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/1_as-copas.jpg";
-                puntuacion += 1;
-                mostrarPuntuacion.textContent = puntuacion.toString();
-            }
-            break;
-        case 2:
-            if(cartaImg && mostrarPuntuacion){
-                cartaImg.src = "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/2_dos-copas.jpg";
-                puntuacion += 1;
-                mostrarPuntuacion.textContent = puntuacion.toString();
-            }
-            break;
-        case 3:
-            if(cartaImg && mostrarPuntuacion){
-                cartaImg.src = "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/3_tres-copas.jpg";
-                puntuacion += 1;
-                mostrarPuntuacion.textContent = puntuacion.toString();
-            }
-            break;
-        case 4:
-            if(cartaImg && mostrarPuntuacion){
-                cartaImg.src = "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/4_cuatro-copas.jpg";
-                puntuacion += 1;
-                mostrarPuntuacion.textContent = puntuacion.toString();
-            }
-            break;
-        case 5:
-            if(cartaImg && mostrarPuntuacion){
-                cartaImg.src = "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/5_cinco-copas.jpg";
-                puntuacion += 1;
-                mostrarPuntuacion.textContent = puntuacion.toString();
-            }
-            break;
-        case 6:
-            if(cartaImg && mostrarPuntuacion){
-                cartaImg.src = "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/6_seis-copas.jpg";
-                puntuacion += 1;
-                mostrarPuntuacion.textContent = puntuacion.toString();
-            }
-            break;
-        case 7:
-            if(cartaImg && mostrarPuntuacion){
-                cartaImg.src = "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/7_siete-copas.jpg";
-                puntuacion += 1;
-                mostrarPuntuacion.textContent = puntuacion.toString();
-            }
-            break;
-        case 10:
-            if(cartaImg && mostrarPuntuacion){
-                cartaImg.src = "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/10_sota-copas.jpg";
-                puntuacion += 0.5;
-                mostrarPuntuacion.textContent = puntuacion.toString();
-            }
-            break;
-        case 11:
-            if(cartaImg && mostrarPuntuacion){
-                cartaImg.src = "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/11_caballo-copas.jpg";
-                puntuacion += 0.5;
-                mostrarPuntuacion.textContent = puntuacion.toString();
-            }
-            break;
-        case 12:
-            if(cartaImg && mostrarPuntuacion){
-                cartaImg.src = "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/12_rey-copas.jpg";
-                puntuacion += 0.5;
-                mostrarPuntuacion.textContent = puntuacion.toString();
-            }
-            break;
-        default:
-            if(errorM && mostrarPuntuacion){
-                errorM.textContent = "El número no corresponde"
-            }
-          break;
-      }
-};
-
-
-const dameCarta = () => {
-    let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
-    numeroAleatorio > 7 ? numeroAleatorio +=2 : numeroAleatorio;
-    if( puntuacion < 7.5){
-        mostrarCarta(numeroAleatorio);
-        muestraPuntuacion();
-    }else{
-        botonAñadir? botonAñadir.disabled = true : "";
+const mensajes = (msj : string) => {
+    const errorM = document.querySelector(".error");
+    if(errorM !== null && errorM !== undefined && errorM instanceof HTMLElement){
+        errorM.textContent = msj;
     }
 }
 
-function muestraPuntuacion(){
+const mostrarCarta = (carta : number) : string | undefined => {
+    switch (carta) {
+        case 1:
+            return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/1_as-copas.jpg";
+        case 2:
+            return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/2_dos-copas.jpg";
+        case 3:
+            return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/3_tres-copas.jpg";
+        case 4:
+            return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/4_cuatro-copas.jpg";
+        case 5:
+            return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/5_cinco-copas.jpg";
+        case 6:
+            return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/6_seis-copas.jpg";
+        case 7:
+            return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/7_siete-copas.jpg";
+        case 10:
+            return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/10_sota-copas.jpg";
+        case 11:
+            return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/11_caballo-copas.jpg";
+        case 12:
+            return "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/12_rey-copas.jpg";
+        default:
+            mensajes("No se encontro el número");
+            return undefined;
+      }
+};
+
+const mostrarPuntuacion = () => {
+    const mostrarPuntuacion = document.getElementById("contador");
+    if(mostrarPuntuacion !== null && mostrarPuntuacion !== undefined && mostrarPuntuacion instanceof HTMLElement)
+        mostrarPuntuacion.textContent = puntuacion.toString();
+}
+const calcularNumeroAleatorio = () => Math.floor(Math.random() * 10) + 1;
+const calcularPuntuacionReal = (nAleatorio : number, pt : number) => nAleatorio > 7 ? pt +=0.5 : pt+=1; 
+const calcularNumeroCarta = (nAleatorio : number) => nAleatorio > 7 ? nAleatorio +=2 : nAleatorio; 
+const pintarCarta = (url : string) => {
+    const cartaImg = document.querySelector(".imagen");
+    if(cartaImg !== null && cartaImg !== undefined && cartaImg instanceof HTMLImageElement){
+        cartaImg.src = url;
+    }else{
+        console.log("No se encontro la carta")
+    }
+}
+
+const dameCarta = () => {
+
+    const numeroAleatorio = calcularNumeroAleatorio();
+
+    const puntuacionReal = calcularPuntuacionReal(numeroAleatorio, puntuacion);
+
+    puntuacion = puntuacionReal; 
+
+    // 8 aleatorio ---> carta 10
+    const numeroCarta = calcularNumeroCarta(numeroAleatorio);
+
+    const urlImagen = mostrarCarta(numeroCarta); //string con el src
+
+    
+    if(puntuacion < 8) {
+        if (urlImagen !== undefined) {
+            pintarCarta(urlImagen)
+          } else {
+            console.log("urlImagen es undefined");
+          }
+        pintarPuntuacion();
+    } else {
+      deshabilitar(true);
+      pintarPuntuacion();
+    }
+  };
+
+const plantarme = () => {
+    puntuaciones();
+    nuevaPartida("block");
+};
+
+function nuevaPartida(smj : string){
+    const botonNueva = document.querySelector(".nueva");
+    if (botonNueva !== null && botonNueva !== undefined && botonNueva instanceof HTMLButtonElement) {
+        botonNueva.style.display = smj;
+    } else {
+        console.error("No se encontro el elemento nuevo");
+    }
+}
+
+function pintarPuntuacion(){
     if(puntuacion > 7.5){
-        errorM? errorM.textContent = "Game Over" : "";
-        botonAñadir? botonAñadir.disabled = true : "";
-        botonNueva ? botonNueva.style.display = "block" : "";
+        mensajes("Game Over");
+        deshabilitar(true);
+        ocultar("none");
+        nuevaPartida("block");
+
     };
-    mostrarPuntuacion ? mostrarPuntuacion.textContent = puntuacion.toString() : "";
+    mostrarPuntuacion();
 }
 
 const puntuaciones = () => {
-    botonAñadir? botonAñadir.disabled = true : "";
-    botonNueva ? botonNueva.style.display = "block" : "";
-    botonSaber ? botonSaber.style.display = "block" : "";
+    deshabilitar(true);
+    ocultar("block")
     if(puntuacion > 4){
-        switch (puntuacion) {
-            case 7.5:
-                errorM ? errorM.textContent = "¡ Lo has clavado! ¡Enhorabuena!" : "";
-            break;
-            case 5:
-                errorM ? errorM.textContent = "Te ha entrado el canguelo eh?" : "";
-            break;
-            case 6:
-                errorM ? errorM.textContent = "Casi casi..." : "";
-            break;
-            case 7:
-                errorM ? errorM.textContent = "Casi casi..." : "";
-            break;
-            default:
-                errorM ? errorM.textContent = "Te has Plantado" : "";
-            break;
+        if(puntuacion === 7.5 ){
+            mensajes("¡ Lo has clavado! ¡Enhorabuena!");
+        }else if(puntuacion === 5 || puntuacion === 5.5){
+            mensajes("Te ha entrado el canguelo eh?");
+        }else if(puntuacion === 6  || puntuacion === 7){
+            mensajes ("Casi casi...");
+        }else{
+            mensajes ("Game Over");
         }
     }else{
-        errorM ? errorM.textContent = "Has sido muy conservador" : "";
+        mensajes("Has sido muy conservador");
+    }
+}
+function deshabilitar (msj : boolean){
+    const botonAñadir = document.querySelector(".añadir");
+    if (botonAñadir !== null && botonAñadir !== undefined && botonAñadir instanceof HTMLButtonElement) {
+        botonAñadir.disabled = msj;
+    } else {
+        console.error("No se encontro el elemento añadir");
+    }
+}
+
+function ocultar (msj : string){
+    const botonSaber = document.querySelector(".saber");
+    if (botonSaber !== null && botonSaber !== undefined && botonSaber instanceof HTMLButtonElement) {
+        botonSaber.style.display = msj;
+    } else {
+        console.error("No se encontro el elemento saber");
     }
 }
 
 function saber(){
-    botonAñadir? botonAñadir.disabled = false : "";
-    botonSaber ? botonSaber.style.display = "none" : "";
-    errorM ? errorM.textContent = "" : "";
+    deshabilitar(false);
+    ocultar("none");
+    mensajes("");
 }
 
 function recargarPagina() {
-    location.reload();
+    deshabilitar(false);
+    ocultar("none");
+    nuevaPartida("none")
+    mensajes("");
+    puntuacion = 0;
+    mostrarPuntuacion();
+
 }
+ 
+function eventos(){
+    const botonAñadir = document.querySelector(".añadir");
+    if (botonAñadir !== null && botonAñadir !== undefined && botonAñadir instanceof HTMLButtonElement) {
+            botonAñadir.addEventListener("click", dameCarta);
+        } else {
+            console.error("No se encontro el elemento añadir");
+        }
+        
+        const botonPlantarse = document.querySelector(".plantarse");    
+        if (botonPlantarse !== null && botonPlantarse !== undefined && botonPlantarse instanceof HTMLButtonElement) {
+            botonPlantarse.addEventListener("click", plantarme);
+        } else {
+            console.error("No se encontro el elemento plantarse");
+        }
+        
+        const botonNueva = document.querySelector(".nueva");
+        if (botonNueva !== null && botonNueva !== undefined && botonNueva instanceof HTMLButtonElement) {
+                botonNueva.addEventListener("click", recargarPagina);
+            } else {
+                console.error("No se encontro el elemento nuevo");
+            }
+            
+        const botonSaber = document.querySelector(".saber");
+        if (botonSaber !== null && botonSaber !== undefined && botonSaber instanceof HTMLButtonElement) {
+                botonSaber.addEventListener("click", saber);
+            } else {
+                console.error("No se encontro el elemento saber");
+        }
+
     
-botonAñadir?.addEventListener("click", dameCarta);
-botonPlantarse?.addEventListener("click", puntuaciones);
-botonNueva?.addEventListener("click", recargarPagina);
-botonSaber?.addEventListener("click", saber);
-    
+};
+
+document.addEventListener("DOMContentLoaded", () =>{eventos(); mostrarPuntuacion();});
     
